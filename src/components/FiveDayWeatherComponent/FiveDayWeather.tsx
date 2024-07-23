@@ -1,26 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useWeather from "../../hooks/useWeather";
 import humidity from "../../image/humidity.svg";
 import { Accordion } from "react-bootstrap";
 
 export const FiveDayWeather = () => {
     const { fiveWeather, weather } = useWeather();
+    const [weatherLocationName, setWeatherLocationName] = useState("");
 
     const weatherData = weather.flatMap((w) => w);
-    const weatherDataIcon = weatherData.flatMap(
-        (icon) => icon.current.condition.icon
-    );
 
     const weatherLocation = weatherData.flatMap((name) => name.location.name);
-    let weatherLocationName = "";
 
-    if (weatherLocation.length > 0) weatherLocationName = weatherLocation[0];
+    useEffect(() => {
+      if (weatherLocation.length > 0) {
+        setWeatherLocationName(weatherLocation[0]);
+      }
+    }, [weatherLocation]);
 
-    let weatherPicture = "";
+    // const weatherLocation = weatherData.flatMap((name) => name.location.name);
+    // let weatherLocationName = "";
 
-    if (weatherDataIcon.length > 0) weatherPicture = weatherDataIcon[0];
+    // if (weatherLocation.length > 0) weatherLocationName = weatherLocation[0];
 
-    console.log(weatherPicture);
     return (
         <div>
             {fiveWeather.length > 0 && (
