@@ -1,0 +1,7 @@
+.weather-condition-container {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 40px; 
+}

@@ -1,0 +1,65 @@
+.to-day-weather-box {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .carousel {
+        width: 100%;
+        height: 600px;
+        
+        .carousel-inner {
+            border-radius: 7px;
+            
+            .carousel-item {
+    
+                .carousel-weather-img {
+                    width: 100%;
+                    height: 600px;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}
+
+
+.accordion-body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+
+    .three-time-weather {
+        border-right: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-right: 10px;
+        gap: 20px;
+
+        .weather-date {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            width: 220px;
+        }
+
+        .weather-condiyions {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+
+    .three-time-weather:last-of-type {
+        border-right: 0;
+    }   
+}
