@@ -1,10 +1,10 @@
-.bg-body-tertiary {
-  background-color: rgb(31, 31, 31);
+.App .bg-body-tertiary {
+  background-color: rgb(31, 31, 31) !important;
   position: fixed;
   width: 100%;
   z-index: 5;
 }
-.bg-body-tertiary .container .navbar-brand {
+.App .bg-body-tertiary .container .navbar-brand {
   color: whitesmoke;
   display: flex;
   justify-content: center;
