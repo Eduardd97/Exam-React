@@ -1,0 +1,23 @@
+.accordion {
+
+    .accordion-item {
+
+        .accordion-header {
+
+            .accordion-button {
+                display: flex;
+                gap: 20px;
+            }
+        }
+
+        .accordion-collapse {
+
+            .accordion-body {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+        }
+    }
+}

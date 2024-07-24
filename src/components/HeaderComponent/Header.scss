@@ -1,0 +1,17 @@
+.bg-body-tertiary {
+    background-color: rgb(31, 31, 31);
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+
+    .container {
+        .navbar-brand {
+            color: whitesmoke;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            font-size: 30px;
+        }
+    }
+}

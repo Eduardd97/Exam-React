@@ -1,22 +1,20 @@
 import useWeather from "../../hooks/useWeather";
 import { Accordion } from "react-bootstrap";
 import "./ToDayWeather.css";
-import "./ToDayWeatherMobile.css";
 import humidity from "../../image/humidity.svg";
 import { CarouselWeather } from "../CarouselWeatherComponent/CarouselWeather";
+import { useMemo } from "react";
 
 
 export const ToDayWeatherList = () => {
     const { weather, fiveWeather } = useWeather();
-    console.log(weather);
 
-    const weatherData = weather.flatMap((w) => w);
+    const weatherData = useMemo(() => weather.flatMap((w) => w), [weather]);
 
     const weatherHumidity = humidity;
 
-    const threHoursWeather = fiveWeather
-        .slice(0, 5)
-        .map(({ dt_txt, main: { temp, humidity }, wind: { speed } }) => {
+    const fiveHoursWeather = useMemo(() => 
+        fiveWeather.slice(0, 5).map(({ dt_txt, main: { temp, humidity }, wind: { speed } }) => {
             return (
                 <div className='three-time-weather'>
                     <div className='weather-date'>
@@ -47,7 +45,7 @@ export const ToDayWeatherList = () => {
                     </div>
                 </div>
             );
-        });
+        }), [fiveWeather, weatherHumidity]);
 
     return (
         <div className='to-day-weather-box'>
@@ -72,7 +70,7 @@ export const ToDayWeatherList = () => {
                                         {w.location.name}
                                     </Accordion.Header>
                                     <Accordion.Body>
-                                        {threHoursWeather}
+                                        {fiveHoursWeather}
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>

@@ -1,0 +1,18 @@
+.input-group {
+  position: fixed;
+  top: 80px;
+  z-index: 5;
+}
+.input-group .form-control {
+  border-radius: 0;
+}
+.input-group .btn {
+  border-radius: 0;
+  background: white;
+  border: 1px solid rgb(207, 207, 207);
+  border-top: 0;
+}
+.input-group .btn:hover {
+  color: rgb(221, 221, 221);
+  background: rgb(70, 70, 70);
+}

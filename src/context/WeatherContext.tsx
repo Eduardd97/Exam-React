@@ -1,6 +1,6 @@
 import React, { createContext, useState, FC, ReactNode } from "react";
 
-import {  sevenDayWeatherApi, toDayWeatherApi } from "../apiAxios/axios";
+import {  fiveDayWeatherApi, toDayWeatherApi } from "../apiAxios/axios";
 import { FiveDayWetherTYpe, ToDayWeatherDataType } from "../type";
 
 interface WeatherContextType {
@@ -8,7 +8,7 @@ interface WeatherContextType {
     fiveWeather: FiveDayWetherTYpe[];
     error: string | null;
     fetchWeatherData: (inputValue: string) => Promise<void>;
-    fetchSevenDayWeatherData: (inputValue: string) => Promise<void>;
+    fetchFiveDayWeatherData: (inputValue: string) => Promise<void>;
     
 }
 
@@ -19,7 +19,7 @@ const defaultContextValue: WeatherContextType = {
     fetchWeatherData: async () => {
         /* noop */
     },
-    fetchSevenDayWeatherData: async () => {
+    fetchFiveDayWeatherData: async () => {
         /* noop */
     },
 };
@@ -33,21 +33,20 @@ const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [fiveWeather, setFiveWeather] = useState<FiveDayWetherTYpe[]>([]);
 
     const fetchWeatherData = async (inputValue: string) => {
-        console.log(inputValue);
         try {
             if (!inputValue) {
                 setError("Input value is empty.");
                 return;
             }
 
+            setWeather([]);
+
             const response = await toDayWeatherApi.get("/current.json", {
                 params: { q: inputValue },
             });
-            console.log(response);
 
-            // setSevenDayWeather(response.data);
             setWeather((prevWeather) => [...prevWeather, response.data]);
-            setError(null); // Сброс ошибки при успешном запросе           
+            setError(null);          
             
         } catch (err) {
             console.error("Error fetching weather data: ", err);
@@ -58,19 +57,18 @@ const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
     };
 
     
-
-    const fetchSevenDayWeatherData = async (inputValue: string) => {
+    const fetchFiveDayWeatherData = async (inputValue: string) => {
         try {
             if (!inputValue) {
                 setError("Input value is empty.");
                 return;
             }
 
-            // Запрашиваем данные о погоде на 7 дней, используя координаты
-            const responseSevenDayWeather = await sevenDayWeatherApi.get(
+            setFiveWeather([]);
+
+            const responseSevenDayWeather = await fiveDayWeatherApi.get(
                 `?q=${inputValue}&appid=f145fcf28e1d32f16464752e12b3c3e5&units=metric`
             );
-            console.log(responseSevenDayWeather.data.list)
             setFiveWeather(responseSevenDayWeather.data.list);
         } catch (error) {
             console.error("Error fetching weather data:", error);
@@ -82,7 +80,7 @@ const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     return (
         <WeatherContext.Provider
-            value={{ weather, fiveWeather, error, fetchWeatherData, fetchSevenDayWeatherData }}
+            value={{ weather, fiveWeather, error, fetchWeatherData, fetchFiveDayWeatherData }}
         >
             {children}
         </WeatherContext.Provider>

@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import useWeather from "../../hooks/useWeather";
+import "./SearchWeather.css"
 
 export const SearchWeather = () => {
-    const { fetchWeatherData, fetchSevenDayWeatherData } = useWeather();
+    const { fetchWeatherData, fetchFiveDayWeatherData } = useWeather();
     const [inputValue, setInputValue] = useState("");
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +13,8 @@ export const SearchWeather = () => {
 
     const handleFetchWeather = async () => {
         await fetchWeatherData(inputValue);
-        await fetchSevenDayWeatherData(inputValue);
+        await fetchFiveDayWeatherData(inputValue);
+        setInputValue("");
     };
 
     return (

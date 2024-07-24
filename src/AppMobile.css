@@ -1,0 +1,12 @@
+@media (max-width: 450px) {
+  .weather-condition-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .weather-condition-container .to-day-weather-box .carousel .carousel-control-prev {
+    display: none;
+  }
+  .weather-condition-container .to-day-weather-box .carousel .carousel-control-next {
+    display: none;
+  }
+}

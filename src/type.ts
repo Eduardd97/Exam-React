@@ -72,9 +72,9 @@ export type FiveDayWetherTYpe = {
     dt_txt: string;
 };
 
-export type Weather = {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
+export type WeatherData = {
+    dateTime: string;
+    temperature: number;
+    humidity: number;
+    windSpeed: number;
 };

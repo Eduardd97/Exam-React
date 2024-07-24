@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useWeather from "../../hooks/useWeather";
 import humidity from "../../image/humidity.svg";
 import { Accordion } from "react-bootstrap";
+import "./FiveDayWeatherComponent.css"
 
 export const FiveDayWeather = () => {
     const { fiveWeather, weather } = useWeather();
@@ -17,11 +18,6 @@ export const FiveDayWeather = () => {
       }
     }, [weatherLocation]);
 
-    // const weatherLocation = weatherData.flatMap((name) => name.location.name);
-    // let weatherLocationName = "";
-
-    // if (weatherLocation.length > 0) weatherLocationName = weatherLocation[0];
-
     return (
         <div>
             {fiveWeather.length > 0 && (
@@ -31,7 +27,7 @@ export const FiveDayWeather = () => {
                             <Accordion defaultActiveKey={["0"]} alwaysOpen>
                                 <Accordion.Item eventKey='0'>
                                     <Accordion.Header>
-                                        <span>{w.dt_txt}</span>
+                                        <span>{w.dt_txt.slice(0, 16)}</span>
                                         <span>{weatherLocationName}</span>
                                     </Accordion.Header>
                                     <Accordion.Body>
@@ -39,7 +35,7 @@ export const FiveDayWeather = () => {
                                             {Math.round(w.main.temp * 10) / 10}
                                             °C
                                         </span>
-                                        <span>Speed: {w.wind.speed}m/s</span>
+                                        <span className="weather-speed">Speed: {w.wind.speed}m/s</span>
                                         <span>
                                             {w.main.humidity}
                                             <img

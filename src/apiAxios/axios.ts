@@ -8,6 +8,6 @@ export const toDayWeatherApi = axios.create({
     },
 });
 
-export const sevenDayWeatherApi = axios.create({
+export const fiveDayWeatherApi = axios.create({
     baseURL: "https://api.openweathermap.org/data/2.5/forecast",
 });

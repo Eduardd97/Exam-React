@@ -4,6 +4,7 @@ import useWeather from "../../hooks/useWeather";
 import carouselWeatherplanet from "../../image/planet.png";
 import carouselWeatherforecast from "../../image/Weather-forecast.png";
 import carouselWeatherTemp from "../../image/termometer.png";
+import "./CarouselWeatherContext.css"
 
 export const CarouselWeather = () => {
     const { weather } = useWeather();
@@ -20,7 +21,7 @@ export const CarouselWeather = () => {
                 <div className="carousel-weather-condition">
                     <section>
                         <img src={icon} alt='Weather condition' width={'100px'} height={'100px'}/>
-                        <span>{temp_c}</span>
+                        <span>{temp_c}°C</span>
                     </section>
                 </div>
             );
